@@ -1,0 +1,94 @@
+﻿@inherits LayoutComponentBase
+
+<div class="page-container">
+    <header class="site-header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <a href="/">
+                        <h1>Clarke Student Accommodation</h1>
+                        <p class="tagline">153 High Street, Brixton</p>
+                    </a>
+                </div>
+                <nav class="desktop-nav">
+                    <a href="/" class="nav-link">Home</a>
+                    <a href="/gallery" class="nav-link">Gallery</a>
+                    <a href="/location" class="nav-link">Location</a>
+                    <a href="/contact" class="nav-link">Contact</a>
+                </nav>
+                <button class="mobile-menu-toggle" onclick="toggleMobileMenu()">
+                    <span class="hamburger"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <nav class="mobile-nav" id="mobileNav">
+        <a href="/" class="nav-link">Home</a>
+        <a href="/gallery" class="nav-link">Gallery</a>
+        <a href="/location" class="nav-link">Location</a>
+        <a href="/contact" class="nav-link">Contact</a>
+    </nav>
+
+    <main class="main-content">
+        @Body
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-section">
+                    <h3>Clarke Student Accommodation</h3>
+                    <p>Providing safe, comfortable, and affordable accommodation for students near the University of Johannesburg.</p>
+                    <p style="margin-top: 1rem;"><strong>153 High Street, Brixton, Johannesburg</strong></p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <ul>
+                        <li><a href="/">Home</a></li>
+                        <li><a href="/gallery">Gallery</a></li>
+                        <li><a href="/location">Location</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Info</h4>
+                    <ul>
+                        <li>📞 Mr Dickens: <a href="tel:+27609969028">060 996 9028</a></li>
+                        <li>📞 Mr Kenneth: <a href="tel:+27760908147">076 090 8147</a></li>
+                        <li>📧 <a href="mailto:magoenja@gmail.com">magoenja@gmail.com</a></li>
+                        <li>📍 153 High Street, Brixton</li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h4>Accreditation & Payments</h4>
+                    <div style="margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                         <img src="/images/accommodation/UJ%20logo.jfif" alt="UJ Logo" style="height: 40px; width: auto; border-radius: 4px;" />
+                         <span style="font-weight: bold; color: #fff;">UJ Accredited</span>
+                    </div>
+                    <ul style="list-style: none; padding: 0;">
+                        <li style="margin-bottom: 0.5rem;">✅ NSFAS Accredited</li>
+                        <li style="margin-bottom: 0.5rem;">✅ Bursaries Accepted</li>
+                        <li>✅ Cash</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; @DateTime.Now.Year Clarke Student Accommodation. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<div id="blazor-error-ui" data-nosnippet>
+    An unhandled error has occurred.
+    <a href="." class="reload">Reload</a>
+    <span class="dismiss">🗙</span>
+</div>
+
+<script>
+    function toggleMobileMenu() {
+        const mobileNav = document.getElementById('mobileNav');
+        mobileNav.classList.toggle('active');
+    }
+</script>

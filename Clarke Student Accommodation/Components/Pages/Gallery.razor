@@ -1,0 +1,161 @@
+@page "/gallery"
+@rendermode InteractiveServer
+@using System.IO
+
+<PageTitle>Gallery - Clarke Student Accommodation</PageTitle>
+
+<div class="gallery-header">
+    <div class="container">
+        <h1>Accommodation Gallery</h1>
+        <p>Take a virtual tour of our student accommodation facilities</p>
+        
+        <div class="accreditation-container" style="margin-top: 2rem; display: flex; flex-direction: column; align-items: center; gap: 1rem;">
+            <div class="uj-accreditation" style="background: rgba(255, 255, 255, 0.95); padding: 0.75rem 1.5rem; border-radius: 12px; display: flex; align-items: center; gap: 1rem; box-shadow: 0 4px 6px rgba(0,0,0,0.1);">
+                <img src="/images/accommodation/UJ%20logo.jfif" alt="UJ Accredited" style="height: 60px; width: auto; object-fit: contain;" />
+                <div style="text-align: left;">
+                    <span style="display: block; font-weight: bold; color: #333; font-size: 1.1em;">UJ Accredited</span>
+                    <span style="display: block; font-size: 0.9em; color: #666;">Student Accommodation</span>
+                </div>
+            </div>
+
+            <div class="payment-methods-badge" style="display: flex; gap: 1.5rem; color: #fff; font-size: 0.95em; background: rgba(0,0,0,0.3); padding: 0.5rem 1.5rem; border-radius: 50px; backdrop-filter: blur(4px);">
+                <span><span style="color: #4CAF50;">✔</span> NSFAS</span>
+                <span><span style="color: #4CAF50;">✔</span> Bursary</span>
+                <span><span style="color: #4CAF50;">✔</span> Cash</span>
+            </div>
+            
+            <p style="color: #fff; font-size: 1.1em; font-weight: 500; text-shadow: 0 2px 4px rgba(0,0,0,0.5); margin-top: 0.5rem;">
+                <span style="background-color: rgba(0,0,0,0.4); padding: 0.25rem 1rem; border-radius: 4px;">Males and females have separate buildings</span>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="container gallery-container">
+    @if (categories.Any())
+    {
+        @foreach (var category in categories)
+        {
+            <div class="gallery-category-section" style="margin-bottom: 4rem;">
+                <h2 style="text-align: center; margin-bottom: 2rem; color: var(--color-primary); position: relative; padding-bottom: 1rem;">
+                    @category.Name
+                    <span style="position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 60px; height: 3px; background: var(--color-accent); border-radius: 2px;"></span>
+                </h2>
+                
+                <div class="gallery-grid">
+                    @foreach (var image in category.Images)
+                    {
+                        <div class="gallery-item" @onclick="() => OpenModal(image)">
+                            <img src="@image" alt="@category.Name photo" />
+                            <div class="gallery-overlay">
+                                <span class="zoom-icon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                                    </svg>
+                                </span>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    }
+    else
+    {
+        <div class="no-images">
+            <div class="placeholder-message">
+                <span class="placeholder-icon">📷</span>
+                <h2>Gallery Update In Progress</h2>
+                <p>We are currently updating our gallery with new images.</p>
+                <div class="placeholder-grid">
+                    <!-- Placeholder logic removed for cleaner view when no folders found, but usually there will be folders -->
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+@if (selectedImage != null)
+{
+    <div class="modal-backdrop" @onclick="CloseModal">
+        <div class="modal-content" @onclick:stopPropagation="true">
+            <button class="modal-close" @onclick="CloseModal">&times;</button>
+            <img src="@selectedImage" alt="Accommodation photo" class="modal-image" />
+        </div>
+    </div>
+}
+
+@code {
+    private List<Category> categories = new();
+    private string? selectedImage;
+
+    private class Category
+    {
+        public string Name { get; set; } = "";
+        public List<string> Images { get; set; } = new();
+    }
+
+    protected override void OnInitialized()
+    {
+        LoadImages();
+    }
+
+    private void LoadImages()
+    {
+        // Path to the Gallery folder inside images/accommodation
+        var galleryPath = Path.Combine("wwwroot", "images", "accommodation", "Gallery");
+        
+        if (Directory.Exists(galleryPath))
+        {
+            var directories = Directory.GetDirectories(galleryPath);
+            var allowedExtensions = new[] { ".jpg", ".jpeg", ".png", ".gif", ".webp", ".jfif" };
+
+            // Define the custom order for categories
+            var categoryOrder = new Dictionary<string, int>
+            {
+                { "Bedroom", 1 },
+                { "Living Room", 2 },
+                { "Kitchen Area", 3 },
+                { "Bathroom", 4 },
+                { "Washing Area", 5 },
+                { "Recreational & outside", 6 },
+                { "Shuttle", 7 }
+            };
+
+            // Process directories and sort based on the custom order
+            var sortedDirectories = directories
+                .Select(d => new { Path = d, Name = Path.GetFileName(d) })
+                .OrderBy(d => categoryOrder.ContainsKey(d.Name) ? categoryOrder[d.Name] : 999) // Sort known categories first, others last
+                .ThenBy(d => d.Name) // Alphabetical tie-breaker for unknown categories
+                .ToList();
+
+            foreach (var dir in sortedDirectories)
+            {
+                var dirName = dir.Name;
+                var files = Directory.GetFiles(dir.Path)
+                    .Where(f => allowedExtensions.Contains(Path.GetExtension(f).ToLower()))
+                    .Select(f => $"/images/accommodation/Gallery/{dirName}/{Path.GetFileName(f)}") // Construct web path
+                    .ToList();
+                
+                if (files.Any())
+                {
+                    categories.Add(new Category 
+                    { 
+                        Name = dirName, 
+                        Images = files 
+                    });
+                }
+            }
+        }
+    }
+
+    private void OpenModal(string image)
+    {
+        selectedImage = image;
+    }
+
+    private void CloseModal()
+    {
+        selectedImage = null;
+    }
+}
