@@ -113,7 +113,8 @@
                 var groupedImages = imagePaths
                     .Select(path => new 
                     { 
-                        Path = path, 
+                        // Strip leading slash if present to support relative base href (GitHub Pages)
+                        Path = path.StartsWith("/") ? path.Substring(1) : path,
                         // Assumes path format: /images/accommodation/Gallery/FolderName/FileName
                         Folder = path.Split(new[] { '/' }, StringSplitOptions.RemoveEmptyEntries).Reverse().Skip(1).FirstOrDefault() ?? "Unknown"
                     })
