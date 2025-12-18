@@ -1,13 +1,5 @@
 # Deployment Guide - Clarke Student Accommodation
 
-## 🚨 IMPORTANT: Fix Required First
-
-**⚠️ If deployment is failing, GitHub Pages may not be enabled!**
-
-**👉 [SEE DEPLOYMENT-FIX.md](DEPLOYMENT-FIX.md) for the 2-minute fix 👈**
-
----
-
 This guide covers how to deploy the Clarke Student Accommodation website to GitHub Pages.
 
 ## 🚀 Quick Start
@@ -32,8 +24,6 @@ Before the first deployment, you must enable GitHub Pages:
 5. Save the settings
 
 **Note:** You only need to do this once. The setting persists for all future deployments.
-
-**If you encounter deployment errors, see [DEPLOYMENT-FIX.md](DEPLOYMENT-FIX.md)**
 
 ---
 
@@ -72,7 +62,7 @@ You can manually trigger a deployment without pushing code:
 
 ### Check Deployment Status
 
-1. Go to the **Actions** tab: https://github.com/Seansteiger/Clarke-Student-Accommodation/actions
+1. Go to the **Actions** tab: https://github.com/Seansteiger/Clarke-Student-Accom-Live/actions
 2. Look for the latest "Deploy to GitHub Pages" workflow run
 3. Click on it to see detailed logs
 
@@ -101,7 +91,7 @@ The workflow performs these steps:
 
 The static project is configured for GitHub Pages deployment:
 
-**Base Path:** `/Clarke-Student-Accommodation/`
+**Base Path:** `/Clarke-Student-Accom-Live/`
 - Configured in `wwwroot/index.html` (line 9)
 - Required for GitHub Pages subdirectory deployment
 
@@ -146,7 +136,7 @@ Key features:
 **Solution:**
 1. Check browser console for errors
 2. Verify `.nojekyll` file exists in `wwwroot`
-3. Ensure base href is correct: `/Clarke-Student-Accommodation/`
+3. Ensure base href is correct: `/Clarke-Student-Accom-Live/`
 4. Clear browser cache and hard refresh (Ctrl+F5)
 
 ### Issue: Changes don't appear after deployment
@@ -198,10 +188,10 @@ dotnet publish -c Release -o ../output
 cd ../output/wwwroot
 python3 -m http.server 8080
 
-# Open browser to http://localhost:8080/Clarke-Student-Accommodation/
+# Open browser to http://localhost:8080/Clarke-Student-Accom-Live/
 ```
 
-**Note:** The base href requires the path `/Clarke-Student-Accommodation/` even locally.
+**Note:** The base href requires the path `/Clarke-Student-Accom-Live/` even locally.
 
 ### Pre-Deployment Checklist
 
@@ -220,8 +210,8 @@ Before merging to `master`:
 ## 📊 Deployment History
 
 View all deployments:
-- **Actions tab:** https://github.com/Seansteiger/Clarke-Student-Accommodation/actions
-- **Deployments:** https://github.com/Seansteiger/Clarke-Student-Accommodation/deployments
+- **Actions tab:** https://github.com/Seansteiger/Clarke-Student-Accom-Live/actions
+- **Deployments:** https://github.com/Seansteiger/Clarke-Student-Accom-Live/deployments
 
 Each deployment shows:
 - Commit that triggered it
@@ -284,7 +274,7 @@ If you encounter issues:
 ## ✅ Deployment Success
 
 After successful deployment, your website will be live at:
-**https://seansteiger.github.io/Clarke-Student-Accommodation/**
+**https://seansteiger.github.io/Clarke-Student-Accom-Live/**
 
 Share this URL with students looking for accommodation!
 

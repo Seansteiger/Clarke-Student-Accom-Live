@@ -2,15 +2,7 @@
 
 This project is a Blazor WebAssembly application for student accommodation near the University of Johannesburg.
 
-## 🚨 DEPLOYMENT FIX REQUIRED
-
-**⚠️ The site is currently NOT deployed because GitHub Pages is not enabled.**
-
-**👉 [READ THIS FIRST: DEPLOYMENT-FIX.md](DEPLOYMENT-FIX.md) 👈**
-
-This is a 2-minute fix - you just need to enable GitHub Pages in repository settings!
-
-## 🌐 Live Website (After Fix)
+## 🌐 Live Website
 
 **Website URL:** https://seansteiger.github.io/Clarke-Student-Accom-Live/
 

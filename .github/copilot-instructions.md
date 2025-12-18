@@ -162,7 +162,7 @@ dotnet publish -c Release -o ./publish
 - Deploys on push to `master` branch
 - Uses `Clarke Student Accommodation.Static` project
 - Special handling for Blazor WebAssembly artifacts
-- Live at: https://seansteiger.github.io/Clarke-Student-Accommodation/
+- Live at: https://seansteiger.github.io/Clarke-Student-Accom-Live/
 
 ### Traditional Hosting (Xneelo, etc.)
 - Requires .NET 10 Runtime or self-contained deployment
