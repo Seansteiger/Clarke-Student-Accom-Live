@@ -151,10 +151,7 @@
 
     private async Task HandleSubmit()
     {
-        // Simulate processing
-        await Task.Delay(500);
-        
-        // Construct WhatsApp message
+        // Construct WhatsApp message (removed delay to prevent popup blocker issues)
         var message = $"Hi, inquiry from Clarke Student Accommodation website:\n\n" +
                      $"Name: {formModel.Name}\n" +
                      $"Email: {formModel.Email}\n" +
