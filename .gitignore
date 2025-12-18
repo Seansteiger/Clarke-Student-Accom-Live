@@ -1,0 +1,13 @@
+.git
+.vs
+bin/
+obj/
+*.user
+output/
+output_temp/
+local_debug_build/
+published_output/
+*.log
+_framework/
+wwwroot/_framework/
+deploy/
