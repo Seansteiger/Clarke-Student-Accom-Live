@@ -33,8 +33,7 @@ jobs:
             dotnet publish "Clarke Student Accommodation.Static/Clarke Student Accommodation.Static.csproj" -c Release -o output
             # Fix for missing blazor.webassembly.js (hash issue)
             cp output/wwwroot/_framework/blazor.webassembly.*.js output/wwwroot/_framework/blazor.webassembly.js
-            # Copy index.html to 404.html for SPA routing
-            cp output/wwwroot/index.html output/wwwroot/404.html
+
             # Fix for GitHub Pages Jekyll processing (which ignores _underscore files)
             touch output/wwwroot/.nojekyll
 
