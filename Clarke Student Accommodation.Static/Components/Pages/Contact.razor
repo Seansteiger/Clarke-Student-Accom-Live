@@ -149,10 +149,9 @@
     private string submitMessage = "";
     private bool isSuccess = false;
 
-        // Simulate processing (removed to avoid popup blocker issues)
-        // await Task.Delay(500);
-        
-        // Construct WhatsApp message
+    private async Task HandleSubmit()
+    {
+        // Construct WhatsApp message (removed delay to avoid popup blocker issues)
         var message = $"Hi, inquiry from Clarke Student Accommodation website:\n\n" +
                      $"Name: {formModel.Name}\n" +
                      $"Email: {formModel.Email}\n" +
