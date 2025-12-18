@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="Clarke Student Accommodation.AppHost/Clarke Student Accommodation.AppHost.csproj" />
+  <Project Path="Clarke Student Accommodation.ServiceDefaults/Clarke Student Accommodation.ServiceDefaults.csproj" />
+  <Project Path="Clarke Student Accommodation.Static/Clarke Student Accommodation.Static.csproj" />
+  <Project Path="Clarke Student Accommodation/Clarke Student Accommodation.csproj" />
+</Solution>
