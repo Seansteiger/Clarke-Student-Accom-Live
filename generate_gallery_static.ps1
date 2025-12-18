@@ -9,7 +9,7 @@ foreach ($img in $images) {
     # We want web path: /images/accommodation/Gallery/Folder/File
     $folderName = $img.Directory.Name
     $fileName = $img.Name
-    $webPath = "/images/accommodation/Gallery/$folderName/$fileName"
+    $webPath = "images/accommodation/Gallery/$folderName/$fileName"
     $imagePaths += $webPath
 }
 
