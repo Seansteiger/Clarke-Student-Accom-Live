@@ -1,12 +1,20 @@
 # Deployment Guide - Clarke Student Accommodation
 
+## 🚨 IMPORTANT: Fix Required First
+
+**⚠️ If deployment is failing, GitHub Pages may not be enabled!**
+
+**👉 [SEE DEPLOYMENT-FIX.md](DEPLOYMENT-FIX.md) for the 2-minute fix 👈**
+
+---
+
 This guide covers how to deploy the Clarke Student Accommodation website to GitHub Pages.
 
 ## 🚀 Quick Start
 
 The website is configured to automatically deploy to GitHub Pages when changes are pushed to the `master` branch.
 
-**Deployed URL:** https://seansteiger.github.io/Clarke-Student-Accommodation/
+**Deployed URL:** https://seansteiger.github.io/Clarke-Student-Accom-Live/
 
 ---
 
@@ -16,7 +24,7 @@ The website is configured to automatically deploy to GitHub Pages when changes a
 
 Before the first deployment, you must enable GitHub Pages:
 
-1. Go to your repository on GitHub: https://github.com/Seansteiger/Clarke-Student-Accommodation
+1. Go to your repository on GitHub: https://github.com/Seansteiger/Clarke-Student-Accom-Live
 2. Click **Settings** tab
 3. Navigate to **Pages** in the left sidebar
 4. Under **Source**, select:
@@ -24,6 +32,8 @@ Before the first deployment, you must enable GitHub Pages:
 5. Save the settings
 
 **Note:** You only need to do this once. The setting persists for all future deployments.
+
+**If you encounter deployment errors, see [DEPLOYMENT-FIX.md](DEPLOYMENT-FIX.md)**
 
 ---
 
@@ -44,7 +54,7 @@ The GitHub Actions workflow will:
 1. Build the Blazor WebAssembly static site
 2. Optimize assets
 3. Deploy to GitHub Pages
-4. Make the site live at https://seansteiger.github.io/Clarke-Student-Accommodation/
+4. Make the site live at https://seansteiger.github.io/Clarke-Student-Accom-Live/
 
 ### Method 2: Manual Deployment Trigger
 
